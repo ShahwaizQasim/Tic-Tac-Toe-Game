@@ -1,9 +1,12 @@
+// html elements ko select kiya hai 
 const boxes = document.querySelectorAll(".btn1");
+const gameContainer = document.querySelector(".container");
 const resetBtn = document.querySelector("#btnReset");
 const newGameBtn = document.querySelector("#newGame");
 const msgContainer = document.querySelector(".container-fluid")
-const para_message = document.querySelector("p");
+const para_message = document.querySelector(".user_Winning_Message");
 
+// tic-tac-toe winning patterns 
 let winnerPatterns = [
   [0, 1, 2],
   [0, 3, 6],
@@ -15,13 +18,13 @@ let winnerPatterns = [
   [6, 7, 8],
 ];
 
-let turnOf = true;
+let turnOf = true; // playerX, Player0
 
+
+// all boxes par foreach loop lagaya hai
 boxes.forEach((box) => {
-  // console.log(element);
   box.addEventListener("click", () => {
-    console.log("button was clicked");
-    box.innerText = "X";
+    // console.log("button was clicked");
     if (turnOf === true) {
       box.innerText = "X";
       turnOf = false;
@@ -31,25 +34,27 @@ boxes.forEach((box) => {
     }
     box.disabled = true;
 
-    checkWinner();
+    checkWinner(); // checkWinner ka function call karwaya hai
   });
 });
 
+
 const showWinner = (winner) => {
     para_message.innerText = `Congratulations, Winner is ${winner}`;
-    msgContainer.style.display = 'block';
-
+    msgContainer.classList.remove('hide');
+    // gameContainer.style.display = 'none';
+    disableBoxes(); // disable boxes ka function call karwaya hai
 }
 
 
 const checkWinner = () => {
   for (const pattern of winnerPatterns) {
-    console.log(pattern[0], pattern[1], pattern[2]);
-    console.log(
-      boxes[pattern[0]].innerText,
-      boxes[pattern[1]].innerText,
-      boxes[pattern[2]].innerText
-    );
+    // console.log('pattern', pattern[0], pattern[1], pattern[2]);
+    // console.log(
+    //   boxes[pattern[0]].innerText,
+    //   boxes[pattern[1]].innerText,
+    //   boxes[pattern[2]].innerText
+    // );
 
     const pos1Val = boxes[pattern[0]].innerText;
     const pos2Val = boxes[pattern[1]].innerText;
@@ -64,3 +69,31 @@ const checkWinner = () => {
 
   }
 };
+
+// ye function reset game & new game dono button par kaam karega 
+const resetGame = () => {
+  turnOf = true;
+  enableBoxes();
+  // gameContainer.style.display = 'block';
+  msgContainer.classList.add("hide");
+}
+
+//game khatam hony ky bad hum button pr dubara click nhi kar sakte is liye disable boxes ka function banaya hai
+const disableBoxes = () => {
+  for (const box of boxes) {
+     box.disabled = true;
+  }
+}
+
+// jb user new game ya reset game pr click kre tw box empty ho jaye or button enavle ho jae is liye enable boxes ka function banaya hai  
+const enableBoxes = () => {
+  for (const box of boxes) {
+     box.disabled = false;
+     box.innerText = '';
+  }
+}
+
+
+
+newGameBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
