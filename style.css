@@ -96,3 +96,73 @@ body {
   background-color: #fff;
   color: #000;
 }
+
+
+
+
+/* media query */
+
+@media screen and (max-width:1000px) {
+  .allBox {
+    height: 70vh;
+    width: 50vw;
+  }
+  .allBox > .btn1 {
+    height: 20vh;
+    min-width: 13vw;
+  }
+}
+@media screen and (max-width:768px) {
+  .allBox {
+    height: 70vh;
+    width: 50vw;
+  }
+  .container > h1 {
+    font-size: 2.2rem;
+  }
+  .allBox > .btn1 {
+    height: 17vh;
+    min-width: 13vw;
+  }
+}
+@media screen and (max-width:425px) {
+  .allBox {
+    height: 70vh;
+    width: 70vw;
+  }
+  .container > h1 {
+    font-size: 2.2rem;
+  }
+  .allBox > .btn1 {
+    height: 15vh;
+    min-width: 20vw;
+    font-size: 2.2rem;
+  }
+  #btnReset {
+    min-height: 30px;
+    min-width: 130px;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width:320px) {
+  .allBox {
+    height: 40vh;
+    width: 70vw;
+  }
+  .container > h1 {
+    font-size: 2.2rem;
+  }
+  .allBox > .btn1 {
+    height: 12vh;
+    min-width: 20vw;
+    font-size: 2.2rem;
+  }
+  #btnReset {
+    min-height: 30px;
+    min-width: 130px;
+    font-size: 0.9rem;
+    position: relative;
+    top: 30px;
+  }
+}
